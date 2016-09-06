@@ -1,8 +1,9 @@
 module.exports = {
     findNearestContainer(creep) {
         return creep.pos.findClosestByRange(FIND_STRUCTURES, {
+            //Store in closest non-full container
             filter: function(object) {
-                return object.structureType == STRUCTURE_CONTAINER;
+                return object.structureType == STRUCTURE_CONTAINER && _.sum(object.store) < object.storeCapacity;
             }
         });
     },

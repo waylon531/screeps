@@ -2,6 +2,7 @@ var util = require('util');
 module.exports = {
     run(creep) {
         var total = _.sum(creep.carry);
+        var error;
         if (creep.memory.refuel == false) {
             //Build
             if (!creep.memory.build && !creep.memory.repair) {
@@ -17,11 +18,13 @@ module.exports = {
                 }
             } else {
                 if(creep.memory.build) {
-                    if(creep.build(Game.getObjectById(creep.memory.target)) == ERR_NOT_IN_RANGE) {
+                    error = creep.build(Game.getObjectById(creep.memory.target)
+                    if(error == ERR_NOT_IN_RANGE) {
                         creep.moveTo(Game.getObjectById(creep.memory.target));
                     }
                 }else if (creep.memory.repair){
-                    if(creep.repair(Game.getObjectById(creep.memory.target)) == ERR_NOT_IN_RANGE) {
+                    error = creep.repair(Game.getObjectById(creep.memory.target)
+                    if(error == ERR_NOT_IN_RANGE) {
                         creep.moveTo(Game.getObjectById(creep.memory.target));
                     }
                 }
@@ -33,7 +36,7 @@ module.exports = {
                 creep.moveTo(target);
             }
         }
-        if(total <=0) {
+        if(total <=0 || error == ERR_INVALID_TARGET) {
             //Reset build/repair bit
             creep.memory.build = false;
             creep.memory.repair = false;
