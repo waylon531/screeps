@@ -27,7 +27,7 @@ module.exports = {
         } else {
             //Transfer resources
             var target = util.findNearestEmptyContainer(creep);
-            if(_.sum(target.store) == target.storeCapacity && Game.spawns['Nice'].energy < Game.spawns['Nice'].energyCapacity) {
+            if(!target && game.spawns['Nice'].energy < Game.spawns['Nice'].energyCapacity) {
                 //If container is full
                 target = Game.spawns['Nice'];
             }
