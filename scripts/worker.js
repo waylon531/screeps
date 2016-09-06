@@ -18,12 +18,12 @@ module.exports = {
                 }
             } else {
                 if(creep.memory.build) {
-                    error = creep.build(Game.getObjectById(creep.memory.target)
+                    error = creep.build(Game.getObjectById(creep.memory.target));
                     if(error == ERR_NOT_IN_RANGE) {
                         creep.moveTo(Game.getObjectById(creep.memory.target));
                     }
                 }else if (creep.memory.repair){
-                    error = creep.repair(Game.getObjectById(creep.memory.target)
+                    error = creep.repair(Game.getObjectById(creep.memory.target));
                     if(error == ERR_NOT_IN_RANGE) {
                         creep.moveTo(Game.getObjectById(creep.memory.target));
                     }
