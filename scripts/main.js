@@ -39,7 +39,7 @@ if (Game.spawns['Nice'].canCreateCreep([CARRY,WORK,MOVE]) == 0) {
         upgrader.spawn(Game.spawns['Nice']);
     } else if (builders < 6) {
         builder.spawn(Game.spawns['Nice']);
-    } else if (workers < 6) {
+    } else if (workers < 4) {
         worker.spawn(Game.spawns['Nice']);
     } else if (garrisons < 4) {
         garrison.spawn(Game.spawns['Nice']);
