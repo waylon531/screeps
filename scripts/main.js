@@ -1,4 +1,5 @@
 var worker = require('worker');
+var builder = require('builder');
 var upgrader= require('upgrader');
 var miner = require('miner');
 var soldier = require('soldier');
@@ -9,6 +10,7 @@ var miners = 0;
 var upgraders = 0;
 var soldiers = 0;
 var garrisons = 0;
+var builders = 0;
 for(var i in Game.creeps) {
     if (Game.creeps[i].memory.type == 'miner') {
         miners += 1;
@@ -22,6 +24,9 @@ for(var i in Game.creeps) {
     } else if (Game.creeps[i].memory.type == 'garrison') {
         garrisons +=1;
         garrison.run(Game.creeps[i]);
+    } else if (Game.creeps[i].memory.type == 'builder') {
+        builders +=1;
+        builder.run(Game.creeps[i]);
     } else if (Game.creeps[i].memory.type == 'upgrader') {
         upgraders +=1;
         upgrader.run(Game.creeps[i]);
@@ -32,6 +37,8 @@ if (Game.spawns['Nice'].canCreateCreep([CARRY,WORK,MOVE]) == 0) {
         miner.spawn(Game.spawns['Nice']);
     } else if (upgraders < 2) {
         upgrader.spawn(Game.spawns['Nice']);
+    } else if (builers < 6) {
+        builder.spawn(Game.spawns['Nice']);
     } else if (workers < 6) {
         worker.spawn(Game.spawns['Nice']);
     } else if (garrisons < 4) {
