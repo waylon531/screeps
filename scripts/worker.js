@@ -40,7 +40,7 @@ module.exports = {
             }
         } else {
             //Refuel
-            var target = util.findNearestContainer(creep);
+            var target = util.findNearestFullContainer(creep);
             if(creep.withdraw(target,RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target);
             }
