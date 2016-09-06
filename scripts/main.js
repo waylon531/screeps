@@ -13,9 +13,9 @@ for(var i in Game.creeps) {
     }
 }
 if (Game.spawns['Nice'].canCreateCreep([CARRY,WORK,MOVE]) == 0) {
-    if (miners < 6) {
+    if (miners < 8) {
         miner.spawn(Game.spawns['Nice']);
-    } else if (workers < 6) {
+    } else if (workers < 8) {
         worker.spawn(Game.spawns['Nice']);
     }
 }
