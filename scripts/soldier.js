@@ -5,7 +5,11 @@ module.exports = {
         if(!creep.memory.target) { 
             if (creep.pos.roomName == Game.flags["Flag1"].pos.roomName) {
                 var creepTarget = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-                var structureTarget = creep.pos.findClosestByRange(FIND_HOSTILE_STRUCTURES);
+                var structureTarget = creep.pos.findClosestByRange(FIND_HOSTILE_STRUCTURES, {
+                    filter: function(object) {
+                        return object.structureType != STRUCTURE_CONTROLLER;
+                    }
+                });
             //var creepDefenseTarget = Game.spawns["Nice"].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
             //if (creepDefenseTarget) {
             //    creep.memory.target = creepDefenseTarget.id;
