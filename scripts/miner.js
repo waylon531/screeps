@@ -14,11 +14,11 @@ module.exports = {
                 //Set mining target
                 creep.memory.target = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE, {
                     //Find node with less than max workers
-                    filter: function(object) {
-                        var id = object.id;
-                        return _.countBy(Memory.creeps, function(object) {
-                            return object.target;
-                        })[id] < 3;
+                    filter: function(n) {
+                        var id = n.id;
+                        return _.filter(Memory.creeps, function(object) {
+                            return object.target == id;
+                        }).size() < 3;
                         //return Memory[id] < 3; //TODO dynamic max miner
                     }
                 }).id;
