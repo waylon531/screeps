@@ -12,17 +12,8 @@ module.exports = {
             //Set mining target
             if (!creep.memory.target) {
                 //Set mining target
-                creep.memory.target = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE//, {
-                    //Find node with less than max workers
-                    //filter: function(n) {
-                    //g    var id = n.id;
-                    //    return _.size(_.filter(Memory.creeps, function(object) {
-                    //        return object.target == id;
-                    //    })) < 5;
-                        //return Memory[id] < 3; //TODO dynamic max miner
-                    //}
-                ).id;
-                //Memory[creep.memory.target] +=1;
+                creep.memory.target = _.sample(FIND_SOURCES_ACTIVE);
+                //Use random sampling to fairly evenly distribute workers
             }
             creep.memory.transfer = false;
         }
