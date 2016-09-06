@@ -4,18 +4,15 @@ module.exports = {
         var total = _.sum(creep.carry);
         var error = 0;
         if (creep.memory.refuel == false) {
-            console.log("WTF");
             //Build
             if (!creep.memory.build && !creep.memory.repair) {
                 //choose whether to build or repair
                 var buildTarget = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
                 var repairTarget = util.findNearestRepairTarget(creep);
                 if (repairTarget) {
-                    console.log("REAPAIR");
                     creep.memory.target = repairTarget.id;
                     creep.memory.repair = true;
                 } else if(buildTarget) {
-                    console.log("BUILD");
                     creep.memory.build = true;
                     creep.memory.target = buildTarget.id;
                 }
@@ -33,13 +30,11 @@ module.exports = {
                 }
             }
         } else {
-            console.log("WTF1");
             //Refuel
             var target = util.findNearestContainer(creep);
             if(creep.withdraw(target,RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target);
             }
-            console.log("WTF2");
         }
         if(total <=0 || error == ERR_INVALID_TARGET || (creep.memory.repair && Game.getObjectById(creep.memory.target).hits == Game.getObjectById(creep.memory.target).hitsMax )) {
             console.log(error);

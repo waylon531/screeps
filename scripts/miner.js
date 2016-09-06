@@ -4,7 +4,7 @@ module.exports = {
         var total = _.sum(creep.carry);
         if(total >=50) {
             //Clear target
-            Memory[creep.memory.target] -= 1;
+            //Memory[creep.memory.target] -= 1;
             creep.memory.target = false;
             //Start transferring resources
             creep.memory.transfer = true;
@@ -19,16 +19,15 @@ module.exports = {
                     //    return Memory[id] < 3; //TODO dynamic max miner
                     //}
                 ).id;
-                Memory[creep.memory.target] +=1;
+                //Memory[creep.memory.target] +=1;
             }
             creep.memory.transfer = false;
         }
         if (creep.memory.transfer == false) {
             //Mine
-            var target = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE);
             if(creep.memory.target) {
-                if(creep.harvest(Game.getObjectById(target)) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(Game.getObjectById(target));
+                if(creep.harvest(Game.getObjectById(creep.memory.target)) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(Game.getObjectById(creep.memory.target));
                 }
             }
         } else {
