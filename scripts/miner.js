@@ -16,9 +16,9 @@ module.exports = {
                     //Find node with less than max workers
                     filter: function(n) {
                         var id = n.id;
-                        return _.filter(Memory.creeps, function(object) {
+                        return _.size(_.filter(Memory.creeps, function(object) {
                             return object.target == id;
-                        }).size() < 3;
+                        })) < 3;
                         //return Memory[id] < 3; //TODO dynamic max miner
                     }
                 }).id;
