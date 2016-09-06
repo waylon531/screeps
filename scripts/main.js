@@ -37,7 +37,7 @@ if (Game.spawns['Nice'].canCreateCreep([CARRY,WORK,MOVE]) == 0) {
         miner.spawn(Game.spawns['Nice']);
     } else if (upgraders < 2) {
         upgrader.spawn(Game.spawns['Nice']);
-    } else if (builers < 6) {
+    } else if (builders < 6) {
         builder.spawn(Game.spawns['Nice']);
     } else if (workers < 6) {
         worker.spawn(Game.spawns['Nice']);
