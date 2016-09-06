@@ -6,6 +6,7 @@ var util = require('util');
 var workers = 0;
 var miners = 0;
 var upgraders = 0;
+var soldiers = 0;
 for(var i in Game.creeps) {
     if (Game.creeps[i].memory.type == 'miner') {
         miners += 1;
