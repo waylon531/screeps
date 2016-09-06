@@ -36,7 +36,7 @@ module.exports = {
                 creep.moveTo(target);
             }
         }
-        if(total <=0 || error == ERR_INVALID_TARGET) {
+        if(total <=0 || error == ERR_INVALID_TARGET || (creep.memory.repair && Game.getObjectById(creep.memory.target).hits < Game.getObjectById(creep.memory.repair).hitsMax ) {
             //Reset build/repair bit
             creep.memory.build = false;
             creep.memory.repair = false;
