@@ -20,7 +20,7 @@ module.exports = {
                     if(creep.build(creep.memory.target) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(creep.memory.target);
                     }
-                }else if {
+                }else if (creep.memory.repair){
                     if(creep.repair(creep.memory.target) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(creep.memory.target);
                     }
