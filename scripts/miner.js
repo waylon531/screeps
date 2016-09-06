@@ -4,7 +4,7 @@ module.exports = {
         var total = _.sum(creep.carry);
         if(total >=50) {
             //Clear target
-            //Memory[creep.memory.target] -= 1;
+            Memory[creep.memory.target] -= 1;
             creep.memory.target = false;
             //Start transferring resources
             creep.memory.transfer = true;
@@ -12,14 +12,14 @@ module.exports = {
             //Set mining target
             if (!creep.memory.target) {
                 //Set mining target
-                creep.memory.target = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE//, {
+                creep.memory.target = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE, {
                     //Find node with less than max workers
-                    //filter: function(object) {
-                    //    var id = object.id;
-                    //    return Memory[id] < 3; //TODO dynamic max miner
-                    //}
-                ).id;
-                //Memory[creep.memory.target] +=1;
+                    filter: function(object) {
+                        var id = object.id;
+                        return Memory[id] < 3; //TODO dynamic max miner
+                    }
+                }).id;
+                Memory[creep.memory.target] +=1;
             }
             creep.memory.transfer = false;
         }
