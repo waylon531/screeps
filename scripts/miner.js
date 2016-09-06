@@ -4,7 +4,7 @@ module.exports = {
         var total = _.sum(creep.carry);
         if(total >=50) {
             //Clear target
-            Memory[creep.memory.target.id] -= 1;
+            Memory[creep.memory.target] -= 1;
             creep.memory.target = false;
             //Start transferring resources
             creep.memory.transfer = true;
