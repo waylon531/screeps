@@ -1,5 +1,5 @@
 var worker = require('worker');
-var mine= require('miner');
+var miner = require('miner');
 for(var i in Game.creeps) {
     if (Game.creeps[i].memory.type == 'miner') {
         miner.run(Game.creeps[i]);
