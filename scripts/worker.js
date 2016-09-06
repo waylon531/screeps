@@ -36,10 +36,6 @@ module.exports = {
                 creep.moveTo(target);
             }
         }
-        creep.say(error);
-        creep.say(creep.memory.target);
-        creep.say(creep.memory.build);
-        creep.say(creep.memory.repair);
         if(total <=0 || error == ERR_INVALID_TARGET) {
             //Reset build/repair bit
             creep.memory.build = false;
