@@ -41,7 +41,7 @@ module.exports = {
             }
             console.log("WTF2");
         }
-        if(total <=0 || error == ERR_INVALID_TARGET || (creep.memory.repair && Game.getObjectById(creep.memory.target).hits < Game.getObjectById(creep.memory.target).hitsMax )) {
+        if(total <=0 || error == ERR_INVALID_TARGET || (creep.memory.repair && Game.getObjectById(creep.memory.target).hits == Game.getObjectById(creep.memory.target).hitsMax )) {
             console.log(error);
             //Reset build/repair bit
             creep.memory.build = false;
