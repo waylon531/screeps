@@ -15,7 +15,7 @@ module.exports = {
                     creep.memory.target = structureTarget.id;
                 }
             } else {
-                creep.moveTo(Game.plags["Flag1"]);
+                creep.moveTo(Game.flags["Flag1"]);
             }
         } else {
             error = creep.attack(Game.getObjectById(creep.memory.target));
