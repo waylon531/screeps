@@ -5,7 +5,7 @@ module.exports = {
         var error = 0;
         if (creep.memory.refuel == false) {
             //Build
-            if (!creep.memory.build && !creep.memory.repair) {
+            if (!creep.memory.build && !creep.memory.repair && !creep.memory.upgrade) {
                 //choose whether to build or repair
                 var buildTarget = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
                 var repairTarget = util.findNearestRepairTarget(creep);
