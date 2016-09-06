@@ -7,13 +7,13 @@ module.exports = {
             if (!creep.memory.build && !creep.memory.repair) {
                 //choose whether to build or repair
                 var buildTarget = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
-                var repairTarget = creep.pos.findClosestByRange(FIND_STRUCTURES);
-                if(buildTarget) {
-                    creep.memory.build = true;
-                    creep.memory.target = buildTarget.id;
-                } else if (repairTarget) {
+                var repairTarget = util.findNearestRepairTarget(creep);
+                if (repairTarget) {
                     creep.memory.target = repairTarget.id;
                     creep.memory.repair = true;
+                } else if(buildTarget) {
+                    creep.memory.build = true;
+                    creep.memory.target = buildTarget.id;
                 }
             } else {
                 if(creep.memory.build) {

@@ -5,5 +5,13 @@ module.exports = {
                 return object.structureType == STRUCTURE_CONTAINER;
             }
         });
+    },
+    findNearestiRepairTarget(creep) {
+        return creep.pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: function(object) {
+                //Filter out buildings with full health
+                return object.hits < object.hitsMax;
+            }
+        });
     }
 }
