@@ -9,12 +9,16 @@ module.exports = {
                 //choose whether to build or repair
                 var buildTarget = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
                 var repairTarget = util.findNearestRepairTarget(creep);
+                var controllerTarget = creep.room.controller;
                 if (repairTarget) {
                     creep.memory.target = repairTarget.id;
                     creep.memory.repair = true;
                 } else if(buildTarget) {
                     creep.memory.build = true;
                     creep.memory.target = buildTarget.id;
+                } else if (controllerTarget) {
+                    creep.memory.upgrade = true;   
+                    creep.memory.target = controllerTarget.id;
                 }
             } else {
                 if(creep.memory.build) {
@@ -24,6 +28,11 @@ module.exports = {
                     }
                 }else if (creep.memory.repair){
                     error = creep.repair(Game.getObjectById(creep.memory.target));
+                    if(error == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(Game.getObjectById(creep.memory.target));
+                    }
+                }else if (creep.memory.upgrade){
+                    error = creep.upgradeController(Game.getObjectById(creep.memory.target));
                     if(error == ERR_NOT_IN_RANGE) {
                         creep.moveTo(Game.getObjectById(creep.memory.target));
                     }
@@ -37,10 +46,10 @@ module.exports = {
             }
         }
         if(total <=0 || error == ERR_INVALID_TARGET || (creep.memory.repair && Game.getObjectById(creep.memory.target).hits == Game.getObjectById(creep.memory.target).hitsMax )) {
-            console.log(error);
             //Reset build/repair bit
             creep.memory.build = false;
             creep.memory.repair = false;
+            creep.memory.upgrade = false;
             //Set refuel bit
             creep.memory.refuel = true;
         } else if (total > 0) {
