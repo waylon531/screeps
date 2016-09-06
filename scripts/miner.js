@@ -18,7 +18,7 @@ module.exports = {
                         var id = object.id;
                         return _.countBy(Memory.creeps, function(object) {
                             return object.target;
-                        }) < 3;
+                        })[id] < 3;
                         //return Memory[id] < 3; //TODO dynamic max miner
                     }
                 }).id;
