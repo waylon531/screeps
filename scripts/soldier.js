@@ -3,12 +3,12 @@ module.exports = {
     run(creep) {
         var error = 0;
         if(!creep.memory.target) { 
-            var creepTarget = Game.flags["Flag1"].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-            var structureTarget = Game.flags["Flag1"].pos.findClosestByRange(FIND_HOSTILE_STRUCTURES);
+            if (creep.room.id == Game.flags["Flag1"].room.id) {
+                var creepTarget = Game.flags["Flag1"].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+                var structureTarget = Game.flags["Flag1"].pos.findClosestByRange(FIND_HOSTILE_STRUCTURES);
             //var creepDefenseTarget = Game.spawns["Nice"].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
             //if (creepDefenseTarget) {
             //    creep.memory.target = creepDefenseTarget.id;
-            if (creep.room.id == Game.flags["Flag1"].room.id) {
                 if (creepTarget) {
                     creep.memory.target = creepTarget.id;
                 }else if (structureTarget) {
