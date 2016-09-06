@@ -2,7 +2,7 @@ var util = require('util');
 module.exports = {
     run(creep) {
         var total = _.sum(creep.carry);
-        var error;
+        var error = 0;
         if (creep.memory.refuel == false) {
             //Build
             if (!creep.memory.build && !creep.memory.repair) {
