@@ -15,8 +15,8 @@ module.exports = {
             }
         } else {
             error = creep.attack(Game.getObjectById(creep.memory.target));
-            if(creep.attack(creep.memory.target) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.memory.target);
+            if(error == ERR_NOT_IN_RANGE) {
+                creep.moveTo(Game.getObjectById(creep.memory.target));
             }
         }
         if (error = ERR_INVALID_TARGET) {
