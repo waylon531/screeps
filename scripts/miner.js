@@ -12,7 +12,7 @@ module.exports = {
             //Set mining target
             if (!creep.memory.target) {
                 //Set mining target
-                creep.memory.target = _.sample(creep.find(FIND_SOURCES_ACTIVE)).id;
+                creep.memory.target = _.sample(creep.room.find(FIND_SOURCES_ACTIVE)).id;
                 //Use random sampling to fairly evenly distribute workers
             }
             creep.memory.transfer = false;
