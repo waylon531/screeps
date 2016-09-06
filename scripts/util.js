@@ -6,7 +6,7 @@ module.exports = {
             }
         });
     },
-    findNearestiRepairTarget(creep) {
+    findNearestRepairTarget(creep) {
         return creep.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: function(object) {
                 //Filter out buildings with full health
