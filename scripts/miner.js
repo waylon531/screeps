@@ -22,7 +22,7 @@ module.exports = {
         } else if (total <= 0) {
             creep.memory.transfer = false;
         }
-    }
+    },
     spawn(spawner) {
         spawner.createCreep([CARRY,WORK,MOVE],null,{type: 'miner', transfer: false});
     }
