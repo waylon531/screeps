@@ -4,10 +4,26 @@ module.exports = {
         var total = _.sum(creep.carry);
         if (creep.memory.refuel == false) {
             //Build
-            var target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
-            if(target) {
-                if(creep.build(target) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(target);
+            if (!creep.memory.build && !creep.memory.repair) {
+                //choose whether to build or repair
+                var buildTarget = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
+                var repairTarget = creep.pos.findClosestByRange(FIND_STRUCTURES);
+                if(buildTarget) {
+                    creep.memory.build = true;
+                    creep.memory.target = buildTarget;
+                } else if (repairTarget) {
+                    creep.memory.target = repairTarget;
+                    creep.memory.repair = true;
+                }
+            } else {
+                if(creep.memory.build) {
+                    if(creep.build(creep.memory.target) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(creep.memory.target);
+                    }
+                }else if {
+                    if(creep.repair(creep.memory.target) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(creep.memory.target);
+                    }
                 }
             }
         } else {
@@ -18,12 +34,17 @@ module.exports = {
             }
         }
         if(total <=0) {
+            //Reset build/repair bit
+            creep.memory.build = false;
+            creep.memory.repair = false;
+            //Set refuel bit
             creep.memory.refuel = true;
         } else if (total > 0) {
+            //Stop refueling
             creep.memory.refuel = false;
         }
     },
     spawn(spawner) {
-        spawner.createCreep([CARRY,WORK,MOVE],null,{type: 'worker',refuel: true});
+        return spawner.createCreep([CARRY,WORK,MOVE],null,{type: 'worker',refuel: true});
     }
 };

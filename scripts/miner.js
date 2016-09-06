@@ -24,6 +24,6 @@ module.exports = {
         }
     },
     spawn(spawner) {
-        spawner.createCreep([CARRY,WORK,MOVE],null,{type: 'miner', transfer: false});
+        return spawner.createCreep([CARRY,WORK,MOVE],null,{type: 'miner', transfer: false});
     }
 };
