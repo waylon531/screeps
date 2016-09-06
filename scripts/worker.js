@@ -10,19 +10,19 @@ module.exports = {
                 var repairTarget = creep.pos.findClosestByRange(FIND_STRUCTURES);
                 if(buildTarget) {
                     creep.memory.build = true;
-                    creep.memory.target = buildTarget;
+                    creep.memory.target = buildTarget.id;
                 } else if (repairTarget) {
-                    creep.memory.target = repairTarget;
+                    creep.memory.target = repairTarget.id;
                     creep.memory.repair = true;
                 }
             } else {
                 if(creep.memory.build) {
-                    if(creep.build(creep.memory.target) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(creep.memory.target);
+                    if(creep.build(Game.getObjectById(creep.memory.target)) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(Game.getObjectById(creep.memory.target));
                     }
                 }else if (creep.memory.repair){
-                    if(creep.repair(creep.memory.target) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(creep.memory.target);
+                    if(creep.repair(Game.getObjectById(creep.memory.target)) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(Game.getObjectById(creep.memory.target));
                     }
                 }
             }
