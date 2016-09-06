@@ -3,7 +3,7 @@ module.exports = {
     run(creep) {
         var error = 0;
         if(!creep.memory.target) { 
-            if (creep.room.name == Game.flags["Flag1"].room.name) {
+            if (creep.pos.roomName == Game.flags["Flag1"].pos.roomName) {
                 var creepTarget = Game.flags["Flag1"].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
                 var structureTarget = Game.flags["Flag1"].pos.findClosestByRange(FIND_HOSTILE_STRUCTURES);
             //var creepDefenseTarget = Game.spawns["Nice"].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
