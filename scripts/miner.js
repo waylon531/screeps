@@ -36,9 +36,9 @@ module.exports = {
                     var extensionTarget = util.findNearestEmptyExtension(creep);
                     creep.memory.transferTarget = extensionTarget.id;
                 }
-                if(creep.transfer(Game.getObjectById(creep.memory.transferTarget),RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(Game.getObjectById(creep.memory.transferTarget));
-                }
+            }
+            if(creep.transfer(Game.getObjectById(creep.memory.transferTarget),RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(Game.getObjectById(creep.memory.transferTarget));
             }
         }
     },
