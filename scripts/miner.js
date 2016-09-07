@@ -27,8 +27,8 @@ module.exports = {
         } else {
             //Transfer resources
             var target = util.findNearestEmptyContainer(creep);
-            if(!target && Game.spawns['Nice'].energy < Game.spawns['Nice'].energyCapacity) {
-                //If container is full
+            if(Game.spawns['Nice'].energy < Game.spawns['Nice'].energyCapacity) {
+                //If spawn is not full
                 target = Game.spawns['Nice'];
             }
             if(creep.transfer(target,RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
