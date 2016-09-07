@@ -16,6 +16,7 @@ module.exports = {
                 //Use random sampling to fairly evenly distribute workers
             }
             creep.memory.transfer = false;
+            creep.memory.transferTarget = false;
         }
         if (creep.memory.transfer == false) {
             //Mine
@@ -26,16 +27,18 @@ module.exports = {
             }
         } else {
             //Transfer resources
-            var target = util.findNearestEmptyContainer(creep);
-            var extensionTarget = util.findNearestEmptyExtension(creep);
-            if(Game.spawns['Nice'].energy < Game.spawns['Nice'].energyCapacity) {
-                //If spawn is not full
-                target = Game.spawns['Nice'];
-            } else if (extensionTarget) {
-                target = extensionTarget;
-            }
-            if(creep.transfer(target,RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(target);
+            if (!creep.memory.transferTarget) {
+                creep.memory.transferTarget = util.findNearestEmptyContainer(creep).id;
+                if(Game.spawns['Nice'].energy < Game.spawns['Nice'].energyCapacity) {
+                    //If spawn is not full
+                    creep.memory.transferTarget = Game.spawns['Nice'].id;
+                } else if (extensionTarget) {
+                    var extensionTarget = util.findNearestEmptyExtension(creep);
+                    creep.memory.transferTarget = extensionTarget.id;
+                }
+                if(creep.transfer(Game.getObjectById(creep.memory.transferTarget),RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(Game.getObjectById(creep.memory.transferTarget));
+                }
             }
         }
     },
