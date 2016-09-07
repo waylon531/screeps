@@ -11,7 +11,7 @@ module.exports = {
             //Set mining target
             if (!creep.memory.target) {
                 //Set mining target
-                creep.memory.target = util.findNearestFullContainer(creep);
+                creep.memory.target = util.findNearestFullContainer(creep).id;
             }
             creep.memory.transfer = false;
             creep.memory.transferTarget = false;
