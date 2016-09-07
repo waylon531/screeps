@@ -23,6 +23,14 @@ module.exports = {
             }
         });
     },
+    findNearestEmptyExtension(creep) {
+        return creep.pos.findClosestByRange(FIND_STRUCTURES, {
+            //Get closest container
+            filter: function(object) {
+                return object.structureType == STRUCTURE_EXTENSION && object.energy < object.energyCapacity;
+            }
+        });
+    },
     findNearestRepairTarget(creep) {
         return creep.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: function(object) {
