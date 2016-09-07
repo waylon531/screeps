@@ -27,7 +27,7 @@ module.exports = {
             }
         } else {
             //Transfer resources
-            if (!creep.memory.transferTarget) {
+            if (!creep.memory.transferTarget && util.findNearestEmptyContainer(creep)) {
                 creep.memory.transferTarget = util.findNearestEmptyContainer(creep).id;
                 /*if(Game.spawns['Nice'].energy < Game.spawns['Nice'].energyCapacity) {
                     //If spawn is not full
