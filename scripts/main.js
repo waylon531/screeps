@@ -42,13 +42,13 @@ for(var i in Game.creeps) {
         transporter.spawn(Game.spawns['Nice']);
     } else if (miners < 8) {
         miner.spawn(Game.spawns['Nice']);
-    } else if (upgraders < 1) {
+    } else if (upgraders < 2) {
         upgrader.spawn(Game.spawns['Nice']);
-    } else if (workers < 2) {
+    } else if (workers < 3) {
         worker.spawn(Game.spawns['Nice']);
     } else if (builders < 2) {
         builder.spawn(Game.spawns['Nice']);
-    } else if (garrisons < 4) {
+    } else if (garrisons < 2) {
         garrison.spawn(Game.spawns['Nice']);
     } else if (soldiers < 0) {
         soldier.spawn(Game.spawns['Nice']);
