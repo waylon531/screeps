@@ -41,7 +41,7 @@ module.exports = {
             if(error == ERR_NOT_IN_RANGE) {
                 creep.moveTo(Game.getObjectById(creep.memory.transferTarget));
             } else if (error == ERR_FULL || error == ERR_INVALID_TARGET) {
-                creep.memory.trasferTarget = false;
+                creep.memory.transferTarget = false;
             }
         }
     },
