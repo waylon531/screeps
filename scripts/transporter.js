@@ -19,8 +19,11 @@ module.exports = {
         if (creep.memory.transfer == false) {
             //Mine
             if(creep.memory.target) {
-                if(creep.withdraw(Game.getObjectById(creep.memory.target),RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                var error = creep.withdraw(Game.getObjectById(creep.memory.target),RESOURCE_ENERGY);
+                if(error == ERR_NOT_IN_RANGE) {
                     creep.moveTo(Game.getObjectById(creep.memory.target));
+                } else if (error == ERR_NOT_ENOUGH_RESOURCES) {
+                    creep.memory.target = false;
                 }
             }
         } else {
