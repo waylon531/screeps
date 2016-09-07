@@ -9,7 +9,7 @@ module.exports = {
             creep.memory.transfer = true;
         } else if (total <= 0) {
             //Set mining target
-            if (!creep.memory.target) {
+            if (!creep.memory.target && util.findNearestFullContainer(creep)) {
                 //Set mining target
                 creep.memory.target = util.findNearestFullContainer(creep).id;
             }
