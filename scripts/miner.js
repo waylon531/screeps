@@ -2,7 +2,7 @@ var util = require('util');
 module.exports = {
     run(creep) {
         var total = _.sum(creep.carry);
-        if(total >=50) {
+        if(total >= carryCapacity) {
             //Clear target
             //Memory[creep.memory.target] -= 1;
             //creep.memory.target = false;
