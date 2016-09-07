@@ -37,8 +37,11 @@ module.exports = {
                     creep.memory.transferTarget = extensionTarget.id;
                 }
             }
-            if(creep.transfer(Game.getObjectById(creep.memory.transferTarget),RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            var error = creep.transfer(Game.getObjectById(creep.memory.transferTarget),RESOURCE_ENERGY);
+            if(error == ERR_NOT_IN_RANGE) {
                 creep.moveTo(Game.getObjectById(creep.memory.transferTarget));
+            } else if (error == ERR_FULL || error == ERR_INVALID_TARGET) {
+                creep.memory.trasferTarget = false;
             }
         }
     },
