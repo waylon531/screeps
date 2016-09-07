@@ -40,13 +40,13 @@ for(var i in Game.creeps) {
 //if (Game.spawns['Nice'].canCreateCreep([CARRY,WORK,MOVE]) == 0) {
     if (transporters < 1) {
         transporter.spawn(Game.spawns['Nice']);
-    } else if (miners < 12) {
+    } else if (miners < 8) {
         miner.spawn(Game.spawns['Nice']);
     } else if (upgraders < 1) {
         upgrader.spawn(Game.spawns['Nice']);
-    } else if (workers < 3) {
+    } else if (workers < 2) {
         worker.spawn(Game.spawns['Nice']);
-    } else if (builders < 3) {
+    } else if (builders < 2) {
         builder.spawn(Game.spawns['Nice']);
     } else if (garrisons < 0) {
         garrison.spawn(Game.spawns['Nice']);

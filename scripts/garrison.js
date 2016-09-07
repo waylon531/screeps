@@ -26,6 +26,6 @@ module.exports = {
         }
     },
     spawn(spawner) {
-        return spawner.createCreep([ATTACK,ATTACK,MOVE,MOVE],null,{type: 'garrison'});
+        return spawner.createCreep([TOUGH,ATTACK,ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE],null,{type: 'garrison'});
     }
 };

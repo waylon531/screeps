@@ -58,6 +58,6 @@ module.exports = {
         }
     },
     spawn(spawner) {
-        return spawner.createCreep([CARRY,WORK,MOVE,MOVE,MOVE],null,{type: 'upgrader',refuel: true});
+        return spawner.createCreep([CARRY,WORK,WORK,MOVE,MOVE,MOVE,MOVE],null,{type: 'upgrader',refuel: true});
     }
 };
