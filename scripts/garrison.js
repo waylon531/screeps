@@ -12,6 +12,8 @@ module.exports = {
                     creep.memory.target = creepTarget.id;
                 }else if (structureTarget) {
                     creep.memory.target = structureTarget.id;
+                } else {
+                    creep.moveTo(Game.flags["Garrison"]);
                 }
         } else {
             error = creep.attack(Game.getObjectById(creep.memory.target));
