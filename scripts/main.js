@@ -48,7 +48,7 @@ for(var i in Game.creeps) {
         worker.spawn(Game.spawns['Nice']);
     } else if (builders < 2) {
         builder.spawn(Game.spawns['Nice']);
-    } else if (garrisons < 0) {
+    } else if (garrisons < 4) {
         garrison.spawn(Game.spawns['Nice']);
     } else if (soldiers < 0) {
         soldier.spawn(Game.spawns['Nice']);
