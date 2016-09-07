@@ -38,16 +38,16 @@ for(var i in Game.creeps) {
     }
 }
 if (Game.spawns['Nice'].canCreateCreep([CARRY,WORK,MOVE]) == 0) {
-    if (miners < 12) {
-        miner.spawn(Game.spawns['Nice']);
-    } else if (transporters < 1) {
+    if (transporters < 1) {
         transporter.spawn(Game.spawns['Nice']);
+    } else if (miners < 12) {
+        miner.spawn(Game.spawns['Nice']);
     } else if (upgraders < 1) {
         upgrader.spawn(Game.spawns['Nice']);
-    } else if (builders < 3) {
-        builder.spawn(Game.spawns['Nice']);
     } else if (workers < 3) {
         worker.spawn(Game.spawns['Nice']);
+    } else if (builders < 3) {
+        builder.spawn(Game.spawns['Nice']);
     } else if (garrisons < 0) {
         garrison.spawn(Game.spawns['Nice']);
     } else if (soldiers < 0) {
