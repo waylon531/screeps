@@ -1,9 +1,9 @@
 var util = require('util');
 module.exports = {
-    run(creep) {
+    run(creep,flag) {
         var error = 0;
         if(!creep.memory.target) { 
-            if (creep.pos.roomName == Game.flags["Flag1"].pos.roomName) {
+            if (creep.pos.roomName == flag.pos.roomName) {
                 var creepTarget = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
                 var structureTarget = creep.pos.findClosestByRange(FIND_HOSTILE_STRUCTURES, {
                     filter: function(object) {
@@ -17,9 +17,12 @@ module.exports = {
                     creep.memory.target = creepTarget.id;
                 }else if (structureTarget) {
                     creep.memory.target = structureTarget.id;
+                } else {
+                    //No targets
+                    creep.moveTo(flag);
                 }
             } else {
-                creep.moveTo(Game.flags["Flag1"]);
+                creep.moveTo(flag);
             }
         } else {
             error = creep.attack(Game.getObjectById(creep.memory.target));

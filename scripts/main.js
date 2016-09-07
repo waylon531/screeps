@@ -20,7 +20,7 @@ for(var i in Game.creeps) {
         worker.run(Game.creeps[i]);
     } else if (Game.creeps[i].memory.type == 'soldier') {
         soldiers +=1;
-        soldier.run(Game.creeps[i]);
+        soldier.run(Game.creeps[i],Game.flags["Attack"]);
     } else if (Game.creeps[i].memory.type == 'garrison') {
         garrisons +=1;
         garrison.run(Game.creeps[i]);
