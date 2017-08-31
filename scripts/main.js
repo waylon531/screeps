@@ -13,6 +13,7 @@ var soldiers = 0;
 var garrisons = 0;
 var builders = 0;
 var transporters = 0;
+var spawn = Game.spawns['Spawn1'];
 for(var i in Game.creeps) {
     if (Game.creeps[i].memory.type == 'miner') {
         miners += 1;
@@ -37,21 +38,21 @@ for(var i in Game.creeps) {
         transporter.run(Game.creeps[i]);
     }
 }
-//if (Game.spawns['Nice'].canCreateCreep([CARRY,WORK,MOVE]) == 0) {
+//if (spawn.canCreateCreep([CARRY,WORK,MOVE]) == 0) {
     if (transporters < 1) {
-        transporter.spawn(Game.spawns['Nice']);
+        transporter.spawn(spawn);
     } else if (miners < 8) {
-        miner.spawn(Game.spawns['Nice']);
+        miner.spawn(spawn);
     } else if (upgraders < 2) {
-        upgrader.spawn(Game.spawns['Nice']);
+        upgrader.spawn(spawn);
     } else if (workers < 3) {
-        worker.spawn(Game.spawns['Nice']);
+        worker.spawn(spawn);
     } else if (builders < 2) {
-        builder.spawn(Game.spawns['Nice']);
+        builder.spawn(spawn);
     } else if (garrisons < 2) {
-        garrison.spawn(Game.spawns['Nice']);
+        garrison.spawn(spawn);
     } else if (soldiers < 0) {
-        soldier.spawn(Game.spawns['Nice']);
+        soldier.spawn(spawn);
     }
 //}
 
