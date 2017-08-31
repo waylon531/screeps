@@ -20,7 +20,7 @@ for(var i in Game.creeps) {
         miner.run(Game.creeps[i]);
     } else if (Game.creeps[i].memory.type == 'worker') {
         workers +=1;
-        //worker.run(Game.creeps[i]);
+        worker.run(Game.creeps[i]);
     } else if (Game.creeps[i].memory.type == 'soldier') {
         soldiers +=1;
         soldier.run(Game.creeps[i],Game.flags["Attack"]);
@@ -35,7 +35,7 @@ for(var i in Game.creeps) {
         upgrader.run(Game.creeps[i]);
     } else if (Game.creeps[i].memory.type == 'transporter') {
         transporters +=1;
-        transporter.run(Game.creeps[i]);
+        //transporter.run(Game.creeps[i]);
     }
 }
 //if (spawn.canCreateCreep([CARRY,WORK,MOVE]) == 0) {
