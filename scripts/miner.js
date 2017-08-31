@@ -38,7 +38,7 @@ module.exports = {
                 }*/
             } else if (util.findNearestEmptyExtension(creep)) {
 		creep.memory.transferTarget = util.findNearestEmptyExtension(creep).id;
-	    } else if (util.findNeaerstSpawn(creep)) {
+	    } else if (util.findNearestSpawn(creep)) {
 		creep.memory.transferTarget = util.findNearestSpawn(creep).id;
             }
             var error = creep.transfer(Game.getObjectById(creep.memory.transferTarget),RESOURCE_ENERGY);
