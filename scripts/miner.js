@@ -12,8 +12,8 @@ module.exports = {
             //Set mining target
             if (!creep.memory.target) {
                 //Set mining target
-                creep.memory.target = _.sample(creep.room.find(FIND_SOURCES_ACTIVE)).id;
-                //Use random sampling to fairly evenly distribute workers
+		//Use the source given when the creep was created
+                creep.memory.target = creep.room.find(FIND_SOURCES_ACTIVE)[creep.memory.source].id;
             }
             creep.memory.transfer = false;
             creep.memory.transferTarget = false;
@@ -45,7 +45,7 @@ module.exports = {
             }
         }
     },
-    spawn(spawner) {
-        return spawner.createCreep([CARRY,WORK,WORK,MOVE],null,{type: 'miner', transfer: false});
+    spawn(spawner, num) {
+        return spawner.createCreep([CARRY,WORK,WORK,MOVE],null,{type: 'miner', transfer: false, source: num});
     }
 };
