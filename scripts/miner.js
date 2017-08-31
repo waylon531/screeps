@@ -46,6 +46,6 @@ module.exports = {
         }
     },
     spawn(spawner) {
-        return spawner.createCreep([CARRY,CARRY,CARRY,WORK,WORK,WORK,MOVE,MOVE],null,{type: 'miner', transfer: false});
+        return spawner.createCreep([CARRY,WORK,WORK,MOVE],null,{type: 'miner', transfer: false});
     }
 };
