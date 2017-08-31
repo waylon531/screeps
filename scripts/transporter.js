@@ -30,12 +30,13 @@ module.exports = {
             //Transfer resources
             if (!creep.memory.transferTarget) {
                 var extensionTarget = util.findNearestEmptyExtension(creep);
+		let spawnTarget = util.findNearestSpawn(creep);
                 if (extensionTarget) {
                     //Send energy to extensions first as they don't regen
                     creep.memory.transferTarget = extensionTarget.id;
-                } else if(Game.spawns['Nice'].energy < Game.spawns['Nice'].energyCapacity) {
+                } else if(spawnTarget.energy < spawnTarget.energyCapacity) {
                     //If spawn is not full
-                    creep.memory.transferTarget = Game.spawns['Nice'].id;
+                    creep.memory.transferTarget = spawnTarget.id;
                 }
             }
             var error = creep.transfer(Game.getObjectById(creep.memory.transferTarget),RESOURCE_ENERGY);
