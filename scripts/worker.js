@@ -60,7 +60,7 @@ module.exports = {
                 //    creep.memory.moveCount = 0;  
                 //}
             }
-            if (creep.memory.pos.isEqualTo(creep.pos)) { 
+            if (creep.pos.isEqualTo(creep.memory.pos)) { 
                 //After 10 steps of sitting in the same place go into idle mode
                 if (creep.memory.idleCount > 10 ) { 
                     creep.memory.idle = true;
