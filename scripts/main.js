@@ -1,11 +1,17 @@
-var worker = require('worker');
-var builder = require('builder');
-var upgrader= require('upgrader');
-var miner = require('miner');
-var soldier = require('soldier');
-var garrison = require('garrison');
-var transporter = require('transporter');
-var util = require('util');
+const worker = require('worker');
+const builder = require('builder');
+const upgrader= require('upgrader');
+const miner = require('miner');
+const soldier = require('soldier');
+const garrison = require('garrison');
+const transporter = require('transporter');
+const util = require('util');
+
+const profiler = require('screeps-profiler');
+
+profiler.enable();
+module.exports.loop = function() {
+  profiler.wrap(function() {
 var workers = 0;
 var miners = [0,0];
 var upgraders = 0;
@@ -58,3 +64,5 @@ for(var i in Game.creeps) {
     }
 //}
 
+  });
+}
