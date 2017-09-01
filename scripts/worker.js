@@ -3,7 +3,16 @@ module.exports = {
     run(creep) {
         var total = _.sum(creep.carry);
         var error = 0;
-        if (creep.memory.refuel == false) {
+        if (creep.memory.idle == true) {
+            if (! creep.pos.inRangeTo(Game.flags["Idle"].pos,2)) {
+                creep.moveTo(Game.flags["Idle"].pos);
+            } else {
+                creep.memory.idleCount -= 1;
+                if (creep.memory.idleCount <= 0) {
+                    creep.memory.idle=false;
+                }
+            }
+        } else if (creep.memory.refuel == false) {
             //Build
             if (!creep.memory.build && !creep.memory.repair && !creep.memory.upgrade) {
                 //choose whether to build or repair
@@ -42,15 +51,26 @@ module.exports = {
             //Refuel
             var target = util.findNearestFullContainer(creep);
             if(creep.withdraw(target,RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                if (creep.moveTo(target) == ERR_NO_PATH) {
-                    if (creep.memory.moveCount > 5) {
-                        creep.moveTo(Game.flags["Idle"].pos);
-                    }
-                    creep.memory.moveCount += 1;  
-                } else {
-                    creep.memory.moveCount = 0;  
-                }
+                creep.moveTo(target);
+                //    if (creep.memory.moveCount > 5) {
+                //        creep.moveTo(Game.flags["Idle"].pos);
+                //    }
+                //    creep.memory.moveCount += 1;  
+                //} else {
+                //    creep.memory.moveCount = 0;  
+                //}
             }
+            if (creep.memory.pos == creep.pos) { 
+                //After 10 steps of sitting in the same place go into idle mode
+                if (creep.memory.idleCount > 10 ) { 
+                    creep.memory.idle = true;
+                    creep.memory.idleCount = 40; //This is the actual idle time
+                }
+                creep.memory.idleCount +=1;
+            } else {
+                creep.memory.idleCount = 0;
+            }
+            creep.memory.pos = creep.pos;
         }
         if(total <=0 || error == ERR_INVALID_TARGET || (creep.memory.repair && Game.getObjectById(creep.memory.target).hits == Game.getObjectById(creep.memory.target).hitsMax )) {
             //Reset build/repair bit
@@ -65,6 +85,6 @@ module.exports = {
         }
     },
     spawn(spawner) {
-        return spawner.createCreep([CARRY,WORK,WORK,MOVE],null,{type: 'worker',refuel: true,'moveCount': 0});
+        return spawner.createCreep([CARRY,WORK,WORK,MOVE],null,{type: 'worker',refuel: true,'idleCount': 0});
     }
 };
