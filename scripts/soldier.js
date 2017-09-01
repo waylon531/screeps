@@ -4,10 +4,14 @@ module.exports = {
         var error = 0;
         if(!creep.memory.target) { 
             if (creep.pos.roomName == flag.pos.roomName) {
-                var creepTarget = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+                var creepTarget = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS, {
+                    filter: function(object) {
+                        return ! util.onWhitelist(object.owner) ;
+                    }
+                });
                 var structureTarget = creep.pos.findClosestByRange(FIND_HOSTILE_STRUCTURES, {
                     filter: function(object) {
-                        return object.structureType != STRUCTURE_CONTROLLER;
+                        return object.structureType != STRUCTURE_CONTROLLER && ( ! util.onWhitelist(object.owner) );
                     }
                 });
             //var creepDefenseTarget = Game.spawns["Nice"].pos.findClosestByRange(FIND_HOSTILE_CREEPS);

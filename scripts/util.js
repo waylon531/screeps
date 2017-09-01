@@ -1,4 +1,8 @@
 module.exports = {
+    onWhitelist(name) {
+        let whitelist = [ "gector" ];
+        return whitelist.includes(name);
+    },
     findNearestContainer(creep) {
         return creep.pos.findClosestByRange(FIND_STRUCTURES, {
             //Get closest container
