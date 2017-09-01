@@ -1,6 +1,9 @@
 var util = require('util');
 module.exports = {
     run(creep) {
+        if (!creep.memory.pos) {
+            creep.memory.pos = creep.pos;
+        }
         var total = _.sum(creep.carry);
         var error = 0;
         if (creep.memory.idle == true) {
@@ -85,6 +88,6 @@ module.exports = {
         }
     },
     spawn(spawner) {
-        return spawner.createCreep([CARRY,WORK,WORK,MOVE],null,{type: 'worker',refuel: true,'idleCount': 0});
+        return spawner.createCreep([CARRY,WORK,WORK,MOVE],null,{type: 'worker',refuel: true,'idleCount': 0 });
     }
 };
