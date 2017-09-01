@@ -42,7 +42,14 @@ module.exports = {
             //Refuel
             var target = util.findNearestFullContainer(creep);
             if(creep.withdraw(target,RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(target);
+                if (creep.moveTo(target) == ERR_NO_PATH) {
+                    if (creep.memory.moveCount > 5) {
+                        creep.moveTo(Game.flags["Idle"].pos);
+                    }
+                    creep.memory.moveCount += 1;  
+                } else {
+                    creep.memory.moveCount = 0;  
+                }
             }
         }
         if(total <=0 || error == ERR_INVALID_TARGET || (creep.memory.repair && Game.getObjectById(creep.memory.target).hits == Game.getObjectById(creep.memory.target).hitsMax )) {
@@ -58,6 +65,6 @@ module.exports = {
         }
     },
     spawn(spawner) {
-        return spawner.createCreep([CARRY,WORK,WORK,MOVE],null,{type: 'worker',refuel: true});
+        return spawner.createCreep([CARRY,WORK,WORK,MOVE],null,{type: 'worker',refuel: true,'moveCount': 0});
     }
 };
