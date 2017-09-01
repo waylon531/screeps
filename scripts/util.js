@@ -11,7 +11,7 @@ module.exports = {
         return creep.pos.findClosestByRange(FIND_STRUCTURES, {
             //Get closest container
             filter: function(object) {
-                return ( object.structureType == STRUCTURE_CONTAINER  && object.store[RESOURCE_ENERGY] > 0 ) || ( object.structureType == STRUCTURE_SPAWN && object.energy > 0 ) ;
+                return object.structureType == STRUCTURE_CONTAINER  && object.store[RESOURCE_ENERGY] > 0;
             }
         });
     },

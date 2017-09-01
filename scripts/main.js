@@ -35,7 +35,7 @@ for(var i in Game.creeps) {
         upgrader.run(Game.creeps[i]);
     } else if (Game.creeps[i].memory.type == 'transporter') {
         transporters +=1;
-        //transporter.run(Game.creeps[i]);
+        transporter.run(Game.creeps[i]);
     }
 }
 //if (spawn.canCreateCreep([CARRY,WORK,MOVE]) == 0) {
@@ -45,13 +45,13 @@ for(var i in Game.creeps) {
         miner.spawn(spawn,0);
     } else if (miners[1] < 3) {
         miner.spawn(spawn,1);
-    } else if (upgraders < 2) {
+    } else if (upgraders < 1) {
         upgrader.spawn(spawn);
-    } else if (workers < 3) {
+    } else if (workers < 2) {
         worker.spawn(spawn);
-    } else if (builders < 2) {
+    } else if (builders < 1) {
         builder.spawn(spawn);
-    } else if (garrisons < 2) {
+    } else if (garrisons < 0) {
         garrison.spawn(spawn);
     } else if (soldiers < 0) {
         soldier.spawn(spawn);
