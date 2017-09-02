@@ -9,7 +9,7 @@ const util = require('util');
 
 const profiler = require('screeps-profiler');
 
-profiler.enable();
+//profiler.enable();
 module.exports.loop = function() {
   profiler.wrap(function() {
 var workers = 0;
@@ -51,11 +51,11 @@ for(var i in Game.creeps) {
         miner.spawn(spawn,0);
     } else if (miners[1] < 3) {
         miner.spawn(spawn,1);
-    } else if (upgraders < 1) {
+    } else if (upgraders < 2) {
         upgrader.spawn(spawn);
-    } else if (workers < 2) {
+    } else if (workers < 3) {
         worker.spawn(spawn);
-    } else if (builders < 1) {
+    } else if (builders < 2) {
         builder.spawn(spawn);
     } else if (garrisons < 0) {
         garrison.spawn(spawn);
