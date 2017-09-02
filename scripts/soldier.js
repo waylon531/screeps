@@ -3,7 +3,12 @@ module.exports = {
     run(creep,flag) {
         var error = 0;
         if(!creep.memory.target) { 
-            if (creep.pos.roomName == flag.pos.roomName) {
+            if (creep.pos.roomName == flag.pos.roomName && !creep.memory.attack) {
+                //Spend another turn moving towards the flag
+                //This should prevent creeps from flip-flopping across the border
+                creep.moveTo(flag);
+                creep.memory.attack = true;
+            } else if (creep.pos.roomName == flag.pos.roomName) {
                 var creepTarget = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS, {
                     filter: function(object) {
                         return ! util.onWhitelist(object.owner) ;
@@ -26,6 +31,7 @@ module.exports = {
                     creep.moveTo(flag);
                 }
             } else {
+                creep.memory.attack = false;
                 creep.moveTo(flag);
             }
         } else {
@@ -39,6 +45,6 @@ module.exports = {
         }
     },
     spawn(spawner) {
-        return spawner.createCreep([TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE],null,{type: 'soldier'});
+        return spawner.createCreep([TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE],null,{type: 'soldier', attack: false});
     }
 };
