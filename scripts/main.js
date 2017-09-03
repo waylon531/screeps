@@ -53,13 +53,13 @@ for(var i in Game.creeps) {
         miner.spawn(spawn,1);
     } else if (upgraders < 2) {
         upgrader.spawn(spawn);
-    } else if (workers < 2) {
+    } else if (workers < 4) {
         worker.spawn(spawn);
     } else if (builders < 1) {
         builder.spawn(spawn);
-    } else if (garrisons < 0) {
+    } else if (garrisons < 2) {
         garrison.spawn(spawn);
-    } else if (soldiers < 2) {
+    } else if (soldiers < 4) {
         soldier.spawn(spawn);
     }
 //}
