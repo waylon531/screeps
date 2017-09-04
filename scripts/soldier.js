@@ -45,6 +45,6 @@ module.exports = {
         }
     },
     spawn(spawner) {
-        return spawner.createCreep([TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE],null,{type: 'soldier', attack: false});
+        return spawner.createCreep([TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE],null,{type: 'soldier', attack: false});
     }
 };
