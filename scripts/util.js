@@ -89,6 +89,23 @@ module.exports = {
             }
         });
     },
+    findLowestRepairTarget(creep) {
+        let repairs = creep.room.find(FIND_STRUCTURES, {
+            filter: function(object) {
+                //Filter out buildings with full health
+                return object.hits < object.hitsMax; //Don't repair over 100K
+            }
+        });
+        let min = repairs[0].hits;
+        let fin = repairs[0];
+        for (var repair in repairs) {
+            if (repair.hits < min) {
+                min = repair.hits;
+                fin = repair;
+            }
+        }
+        return fin;
+    },
     findNearestRepairTargetNoCap(creep) {
         return creep.pos.findClosestByPath(FIND_STRUCTURES, {
             filter: function(object) {
