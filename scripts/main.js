@@ -1,4 +1,5 @@
 const worker = require('worker');
+const balancer = require('balancer');
 const builder = require('builder');
 const upgrader= require('upgrader');
 const miner = require('miner');
@@ -20,6 +21,7 @@ var soldiers = 0;
 var garrisons = 0;
 var builders = 0;
 var transporters = 0;
+var balancers = 0;
 var thiefs = {'Raid1': 0, 'Raid2': 0};
 var spawn = Game.spawns['Spawn1'];
 for(var i in Game.creeps) {
@@ -47,6 +49,9 @@ for(var i in Game.creeps) {
     } else if (Game.creeps[i].memory.type == 'transporter') {
         transporters +=1;
         transporter.run(Game.creeps[i]);
+    } else if (Game.creeps[i].memory.type == 'balancer') {
+        balancers +=1;
+        balancer.run(Game.creeps[i]);
     }
 }
 //if (spawn.canCreateCreep([CARRY,WORK,MOVE]) == 0) {
@@ -56,6 +61,8 @@ for(var i in Game.creeps) {
         miner.spawn(spawn,0);
     } else if (miners[1] < 3) {
         miner.spawn(spawn,1);
+    } else if (balancers < 1) {
+        balancer.spawn(spawn);
     } else if (upgraders < 2) {
         upgrader.spawn(spawn);
     } else if (workers < 4) {
