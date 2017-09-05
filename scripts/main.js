@@ -60,7 +60,7 @@ module.exports.loop = function() {
             }
         }
         //if (spawn.canCreateCreep([CARRY,WORK,MOVE]) == 0) {
-        if (transporters < 2) {
+        if (transporters < 3) {
             transporter.spawn(spawn);
         } else if (miners[0] < 1) {
             miner.spawn(spawn,0);
