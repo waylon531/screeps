@@ -51,14 +51,10 @@ module.exports = {
             } else if (creep.pos.roomName == flag.pos.roomName) {
                 //Transfer resources
                 if (!creep.memory.transferTarget) {
-                    var extensionTarget = util.findNearestEmptyExtension(creep);
-                    let spawnTarget = util.findNearestSpawn(creep);
-                    if (extensionTarget) {
+                    let target = util.findNearestEmptyContainer(creep);
+                    if (target) {
                         //Send energy to extensions first as they don't regen
-                        creep.memory.transferTarget = extensionTarget.id;
-                    } else if(spawnTarget.energy < spawnTarget.energyCapacity) {
-                        //If spawn is not full
-                        creep.memory.transferTarget = spawnTarget.id;
+                        creep.memory.transferTarget = target.id;
                     }
                 }
                 let error = creep.transfer(Game.getObjectById(creep.memory.transferTarget),RESOURCE_ENERGY);
