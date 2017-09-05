@@ -19,7 +19,7 @@ module.exports = {
             //Build
             if (!creep.memory.build && !creep.memory.repair && !creep.memory.upgrade) {
                 //choose whether to build or repair
-                var buildTarget = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
+                var buildTarget = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
                 var repairTarget = util.findNearestRepairTarget(creep);
                 var controllerTarget = creep.room.controller;
                 if (repairTarget) {
