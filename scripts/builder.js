@@ -7,7 +7,7 @@ module.exports = {
             //Build
             if (!creep.memory.build && !creep.memory.repair && !creep.memory.upgrade) {
                 //choose whether to build or repair
-                var buildTarget = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
+                var buildTarget = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
                 var repairTarget = util.findNearestRepairTarget(creep);
                 var controllerTarget = creep.room.controller;
                 if(buildTarget) {
@@ -58,6 +58,6 @@ module.exports = {
         }
     },
     spawn(spawner) {
-        return spawner.createCreep([CARRY,CARRY,WORK,WORK,MOVE,MOVE],null,{type: 'builder',refuel: true});
+        return spawner.createCreep([CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,WORK,WORK,WORK,WORK,MOVE,MOVE,MOVE,MOVE],null,{type: 'builder',refuel: true});
     }
 };
