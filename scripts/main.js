@@ -64,9 +64,9 @@ for(var i in Game.creeps) {
         builder.spawn(spawn);
     } else if (garrisons < 2) {
         garrison.spawn(spawn);
-    } else if (thiefs['Raid1'] < 1)
+    } else if (thiefs['Raid1'] < 1) {
         thief.spawn(spawn,'Raid1');
-    } else if (thiefs['Raid2'] < 1)
+    } else if (thiefs['Raid2'] < 1) {
         thief.spawn(spawn,'Raid2');
     } else if (soldiers < 0) {
         soldier.spawn(spawn);
