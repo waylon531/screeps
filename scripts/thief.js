@@ -42,7 +42,7 @@ module.exports = {
             }
         }
         if (_.sum(creep.carry) == creep.carryCapacity) {
-            let flag = Games.flags["Home"];
+            let flag = Game.flags["Home"];
             if (creep.pos.roomName == flag.pos.roomName && !creep.memory.attack) {
                 //Spend another turn moving towards the flag
                 //This should prevent creeps from flip-flopping across the border
