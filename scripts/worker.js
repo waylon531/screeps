@@ -88,6 +88,6 @@ module.exports = {
         }
     },
     spawn(spawner) {
-        return spawner.createCreep([CARRY,CARRY,WORK,WORK,MOVE,MOVE],null,{type: 'worker',refuel: true,'idleCount': 0 });
+        return spawner.createCreep([MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],null,{type: 'worker',refuel: true,'idleCount': 0 });
     }
 };

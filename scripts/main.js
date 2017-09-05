@@ -70,7 +70,7 @@ module.exports.loop = function() {
             balancer.spawn(spawn);
         } else if (upgraders < 2) {
             upgrader.spawn(spawn);
-        } else if (workers < 4) {
+        } else if (workers < 2) {
             worker.spawn(spawn);
         } else if (builders < 1) {
             builder.spawn(spawn);
