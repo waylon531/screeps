@@ -5,6 +5,7 @@ const miner = require('miner');
 const soldier = require('soldier');
 const garrison = require('garrison');
 const transporter = require('transporter');
+const thief = require('thief');
 const util = require('util');
 
 const profiler = require('screeps-profiler');
@@ -19,6 +20,7 @@ var soldiers = 0;
 var garrisons = 0;
 var builders = 0;
 var transporters = 0;
+var thiefs = {'Raid1': 0, 'Raid2': 0};
 var spawn = Game.spawns['Spawn1'];
 for(var i in Game.creeps) {
     if (Game.creeps[i].memory.type == 'miner' ) {
@@ -39,6 +41,9 @@ for(var i in Game.creeps) {
     } else if (Game.creeps[i].memory.type == 'upgrader') {
         upgraders +=1;
         upgrader.run(Game.creeps[i]);
+    } else if (Game.creeps[i].memory.type == 'thief') {
+        thiefs[Game.creeps[i].memory.flagName] +=1;
+        thief.run(Game.creeps[i]);
     } else if (Game.creeps[i].memory.type == 'transporter') {
         transporters +=1;
         transporter.run(Game.creeps[i]);
@@ -59,7 +64,11 @@ for(var i in Game.creeps) {
         builder.spawn(spawn);
     } else if (garrisons < 2) {
         garrison.spawn(spawn);
-    } else if (soldiers < 4) {
+    } else if (thiefs['Raid1'] < 1)
+        thief.spawn(spawn,'Raid1');
+    } else if (thiefs['Raid2'] < 1)
+        thief.spawn(spawn,'Raid2');
+    } else if (soldiers < 0) {
         soldier.spawn(spawn);
     }
 //}
