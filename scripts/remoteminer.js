@@ -56,6 +56,6 @@ module.exports = {
         }
     },
     spawn(spawner,flagName) {
-        return spawner.createCreep([CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],null,{type: 'remoteminer', attack: false, flagName });
+        return spawner.createCreep([CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],null,{type: 'remoteminer', attack: false, flagName });
     }
 };
