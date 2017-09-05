@@ -88,5 +88,13 @@ module.exports = {
                 return object.hits < object.hitsMax && object.hits < 100000; //Don't repair over 100K
             }
         });
+    },
+    findNearestRepairTargetNoCap(creep) {
+        return creep.pos.findClosestByPath(FIND_STRUCTURES, {
+            filter: function(object) {
+                //Filter out buildings with full health
+                return object.hits < object.hitsMax;
+            }
+        });
     }
 }

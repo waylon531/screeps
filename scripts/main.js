@@ -89,7 +89,7 @@ module.exports.loop = function() {
                     tower.attack(hostile);
                 } else if (tower.energy > tower.energyCapacity/2) {
                     //heal
-                    tower.repair(util.findNearestRepairTarget(tower));
+                    tower.repair(util.findNearestRepairTargetNoCap(tower));
                 }
             });
         }
