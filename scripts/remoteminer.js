@@ -27,6 +27,9 @@ module.exports = {
                 creep.memory.attack = false;
                 creep.moveTo(flag);
             }
+            if (creep.memory.target) {
+                creep.memory.target = false;
+            }
         } else {
             let flag = Game.flags[creep.memory.flagName];
             let error = 0;
