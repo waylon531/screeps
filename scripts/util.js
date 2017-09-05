@@ -20,7 +20,7 @@ module.exports = {
         });
         let max = 0;
         var fin;
-        for (var i=0; i < containers.length(); i++) {
+        for (var i=0; i < containers.length; i++) {
             let container = containers[i];
             if (container.store[RESOURCE_ENERGY] > max) {
                 max = container.store[RESOURCE_ENERGY];
@@ -37,7 +37,7 @@ module.exports = {
         });
         let min = 0;
         var fin;
-        for (var i=0; i < containers.length(); i++) {
+        for (var i=0; i < containers.length; i++) {
             let container = containers[i];
             if (container.store[RESOURCE_ENERGY] < min) {
                 min = container.store[RESOURCE_ENERGY];
