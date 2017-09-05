@@ -35,7 +35,7 @@ module.exports = {
                 if (extensionTarget) {
                     //Send energy to extensions first as they don't regen
                     creep.memory.transferTarget = extensionTarget.id;
-                } else if(spawnTarget.energy < spawnTarget.energyCapacity) {
+                } else if(spawnTarget && spawnTarget.energy < spawnTarget.energyCapacity) {
                     //If spawn is not full
                     creep.memory.transferTarget = spawnTarget.id;
                 } else if (towerTarget && towerTarget.energy<towerTarget.energyCapacity) {
