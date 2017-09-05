@@ -73,6 +73,14 @@ module.exports = {
             }
         });
     },
+    findNearestTower(creep) {
+        return creep.pos.findClosestByPath(FIND_STRUCTURES, {
+            //Get closest container
+            filter: function(object) {
+                return object.structureType == STRUCTURE_TOWER && object.energy < object.energyCapacity;
+            }
+        });
+    },
     findNearestRepairTarget(creep) {
         return creep.pos.findClosestByPath(FIND_STRUCTURES, {
             filter: function(object) {
