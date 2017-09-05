@@ -52,8 +52,11 @@ module.exports = {
                     creep.moveTo(flag);
                 }
             } else {
-                if(creep.harvest(Game.getObjectById(creep.memory.target)) == ERR_NOT_IN_RANGE) {
+                let error = (creep.harvest(Game.getObjectById(creep.memory.target));
+                if(error == ERR_NOT_IN_RANGE) {
                     creep.moveTo(Game.getObjectById(creep.memory.target));
+                } else if (error == ERR_NOT_ENOUGH_RESOURCES || error == ERR_INVALID_TARGET) {
+                    creep.memory.target = false;
                 }
             }
         }
