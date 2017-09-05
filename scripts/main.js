@@ -55,7 +55,7 @@ module.exports.loop = function() {
             }
         }
         //if (spawn.canCreateCreep([CARRY,WORK,MOVE]) == 0) {
-        if (transporters < 1) {
+        if (transporters < 2) {
             transporter.spawn(spawn);
         } else if (miners[0] < 1) {
             miner.spawn(spawn,0);
@@ -81,9 +81,9 @@ module.exports.loop = function() {
 
         //Shoot from towers
         for (var room in Game.rooms) {
-            var towers = room.find(
+            var towers = Game.rooms[room].find(
                 FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
-            for (var tower in towers) {
+            towers.foreach( tower => {
                 let hostile = tower.pos.findClosestByRange();
                 if (hostile) {
                     tower.attack(hostile);
@@ -91,7 +91,7 @@ module.exports.loop = function() {
                     //heal
                     tower.repair(util.findNearestRepairTarget(tower));
                 }
-            }
+            });
         }
 
     });
