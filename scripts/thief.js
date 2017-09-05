@@ -14,9 +14,9 @@ module.exports = {
                     filter: function(object) {
                         //Find buildings that we can steal energy from
                         return ( 
-                            ( ( ( object.structureType == STRUCTURE_SPAWN || object.structureType == STRUCTURE_EXTENSION ) && object.energy ) 
-                              || ( ( object.structureType == STRUCTURE_CONTAINER || object.structureType == STRUCTURE_STORAGE ) && object.store[RESOURCE_ENERGY]) ) 
-                            && ( ! util.onWhitelist(object.owner) );
+                            ( ( ( object.structureType == STRUCTURE_SPAWN || object.structureType == STRUCTURE_EXTENSION ) && object.energy ) ||
+                              ( ( object.structureType == STRUCTURE_CONTAINER || object.structureType == STRUCTURE_STORAGE ) && object.store[RESOURCE_ENERGY]) ) &&
+                            ( ! util.onWhitelist(object.owner) );
                             }
                             });
                         //var creepDefenseTarget = Game.spawns["Nice"].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
