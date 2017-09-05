@@ -35,9 +35,9 @@ module.exports = {
                 return object.structureType == STRUCTURE_CONTAINER;
             }
         });
-        let min = 0;
-        var fin;
-        for (var i=0; i < containers.length; i++) {
+        let min = containers[0].store[RESOURCE_ENERGY];
+        let fin = containers[0];
+        for (var i=1; i < containers.length; i++) {
             let container = containers[i];
             if (container.store[RESOURCE_ENERGY] < min) {
                 min = container.store[RESOURCE_ENERGY];
