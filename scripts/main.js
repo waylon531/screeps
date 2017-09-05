@@ -83,7 +83,7 @@ module.exports.loop = function() {
         for (var room in Game.rooms) {
             var towers = Game.rooms[room].find(
                 FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
-            towers.foreach( tower => {
+            towers.forEach( tower => {
                 let hostile = tower.pos.findClosestByRange();
                 if (hostile) {
                     tower.attack(hostile);
