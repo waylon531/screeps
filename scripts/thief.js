@@ -24,7 +24,7 @@ module.exports = {
                 //    creep.memory.target = creepDefenseTarget.id;
                 //Mine
                 if (target) {
-                    creep.memory.target = creepTarget.id;
+                    creep.memory.target = target.id;
                 } else {
                     //No targets
                     creep.moveTo(flag);
