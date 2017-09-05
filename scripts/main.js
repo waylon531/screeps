@@ -64,7 +64,7 @@ module.exports.loop = function() {
             transporter.spawn(spawn);
         } else if (miners[0] < 1) {
             miner.spawn(spawn,0);
-        } else if (miners[1] < 2) {
+        } else if (miners[1] < 1) {
             miner.spawn(spawn,1);
         } else if (balancers < 1) {
             balancer.spawn(spawn);
