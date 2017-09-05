@@ -20,8 +20,7 @@ module.exports = {
             if (!creep.memory.build && !creep.memory.repair && !creep.memory.upgrade) {
                 //choose whether to build or repair
                 var buildTarget = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
-                //These workers are no longer supposed to repair
-                var repairTarget = false; //util.findNearestRepairTarget(creep); 
+                var repairTarget = util.findNearestRepairTarget(creep);
                 var controllerTarget = creep.room.controller;
                 if (repairTarget) {
                     creep.memory.target = repairTarget.id;
@@ -89,6 +88,6 @@ module.exports = {
         }
     },
     spawn(spawner) {
-        return spawner.createCreep([MOVE,MOVE,MOVE,MOVE,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY],null,{type: 'worker',refuel: true,'idleCount': 0 });
+        return spawner.createCreep([MOVE,MOVE,WORK,WORK,CARRY,CARRY],null,{type: 'repair',refuel: true,'idleCount': 0 });
     }
 };

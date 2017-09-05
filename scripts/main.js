@@ -3,6 +3,7 @@ const builder = require('builder');
 const garrison = require('garrison');
 const miner = require('miner');
 const remoteminer = require('remoteminer');
+const repair = require('repair');
 const soldier = require('soldier');
 const thief = require('thief');
 const transporter = require('transporter');
@@ -23,6 +24,7 @@ module.exports.loop = function() {
         var builders = 0;
         var transporters = 0;
         var balancers = 0;
+        var repairs = 0;
         var thiefs = {'Raid1': 0, 'Raid2': 0};
         var remoteminers = {'Mine1': 0, 'Mine2': 0};
         var spawn = Game.spawns['Spawn1'];
@@ -42,6 +44,9 @@ module.exports.loop = function() {
             } else if (Game.creeps[i].memory.type == 'builder') {
                 builders +=1;
                 builder.run(Game.creeps[i]);
+            } else if (Game.creeps[i].memory.type == 'repair') {
+                repairs +=1;
+                repair.run(Game.creeps[i]);
             } else if (Game.creeps[i].memory.type == 'upgrader') {
                 upgraders +=1;
                 upgrader.run(Game.creeps[i]);
@@ -72,6 +77,8 @@ module.exports.loop = function() {
             upgrader.spawn(spawn);
         } else if (workers < 2) {
             worker.spawn(spawn);
+        } else if (repairs < 2) {
+            repair.spawn(spawn);
         } else if (builders < 1) {
             builder.spawn(spawn);
         } else if (remoteminers['Mine1'] < 2) {
