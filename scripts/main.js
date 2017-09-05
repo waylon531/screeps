@@ -1,13 +1,14 @@
-const worker = require('worker');
 const balancer = require('balancer');
 const builder = require('builder');
-const upgrader= require('upgrader');
-const miner = require('miner');
-const soldier = require('soldier');
 const garrison = require('garrison');
-const transporter = require('transporter');
+const miner = require('miner');
+const remoteminer = require('remoteminer');
+const soldier = require('soldier');
 const thief = require('thief');
+const transporter = require('transporter');
+const upgrader= require('upgrader');
 const util = require('util');
+const worker = require('worker');
 
 const profiler = require('screeps-profiler');
 
@@ -23,6 +24,7 @@ module.exports.loop = function() {
         var transporters = 0;
         var balancers = 0;
         var thiefs = {'Raid1': 0, 'Raid2': 0};
+        var remoteminers = {'Mine1': 0, 'Mine2': 0};
         var spawn = Game.spawns['Spawn1'];
         for(var i in Game.creeps) {
             if (Game.creeps[i].memory.type == 'miner' ) {
@@ -46,6 +48,9 @@ module.exports.loop = function() {
             } else if (Game.creeps[i].memory.type == 'thief') {
                 thiefs[Game.creeps[i].memory.flagName] +=1;
                 thief.run(Game.creeps[i]);
+            } else if (Game.creeps[i].memory.type == 'remoteminer') {
+                remoteminers[Game.creeps[i].memory.flagName] +=1;
+                remoteminer.run(Game.creeps[i]);
             } else if (Game.creeps[i].memory.type == 'transporter') {
                 transporters +=1;
                 transporter.run(Game.creeps[i]);
@@ -69,6 +74,10 @@ module.exports.loop = function() {
             worker.spawn(spawn);
         } else if (builders < 1) {
             builder.spawn(spawn);
+        } else if (remoteminers['Mine1'] < 2) {
+            remoteminer.spawn(spawn,'Mine1');
+        } else if (remoteminers['Mine2'] < 2) {
+            remoteminer.spawn(spawn,'Mine2');
         } else if (garrisons < 2) {
             garrison.spawn(spawn);
         } else if (thiefs['Raid1'] < 1) {
