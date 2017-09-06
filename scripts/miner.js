@@ -13,7 +13,7 @@ module.exports = {
             if (!creep.memory.target) {
                 //Set mining target
 		//Use the source given when the creep was created
-                creep.memory.target = creep.room.find(FIND_SOURCES_ACTIVE)[creep.memory.source].id;
+                creep.memory.target = creep.room.find(FIND_SOURCES)[creep.memory.source].id;
             }
             creep.memory.transfer = false;
             creep.memory.transferTarget = false;
