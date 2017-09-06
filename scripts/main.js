@@ -100,9 +100,15 @@ module.exports.loop = function() {
             var towers = Game.rooms[room].find(
                 FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
             towers.forEach( tower => {
-                let hostile = tower.pos.findClosestByRange();
+                let hostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+                let injured = tower.pos.findClosestByRange(FIND_MY_CREEPS, {
+                        filter: function(object) {
+                            return ( object.hits < object.hitsMax );
+                        } } );
                 if (hostile) {
                     tower.attack(hostile);
+                } else if (injured) {
+                    tower.heal(injured);
                 } else if (tower.energy > tower.energyCapacity/2) {
                     //heal
                     tower.repair(util.findNearestRepairTargetNoCap(tower));
